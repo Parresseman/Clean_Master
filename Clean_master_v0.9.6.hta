@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<title>
+		Clean master v0.9.6
+	</title>
+	<hta:application 
+	id="oMyApp" 
+    applicationname="Clean_master" 
+    border="thin"
+    caption="yes"    
+    showintaskbar="yes"
+    singleinstance="yes"
+    SYSMENU="yes"
+    >
+	<style>
+	html,body {
+		font-family:calibri;
+		color: #FF5A10;
+	}
+	select{
+
+		height: 20px;
+		border-radius: 2px;
+		border: 1px solid #ededed;
+
+	}
+	
+	h1 {
+	
+	font-size: 24px;
+	
+	}
+	.bouton  {
+
+		padding: 10px 10px;
+		border-radius: 2px;
+		border-style: none;
+
+	}
+
+	.bouton:hover {
+
+		color: #FFFFFF;
+		background-color: #FF5A10;
+
+	}
+	
+	#form {
+	
+		margin-left: 20px;
+	
+	}
+	
+	#form1 {
+	
+	margin-top: 20px;
+	
+	}
+	
+	#bouton {
+	
+	margin-top: 20px;
+	
+	}
+	
+	#warning {
+	
+	color: red;
+	
+	}
+	</style>
+</head>
+<body  onload="window.resizeTo(390,300)">
+	<div id="form">
+		<h1>
+			Choose a calculation to clean:
+		</h1>
+		<input type="checkbox" name="PROD_Input" value="PROD"> PROD </input>
+		<input type="checkbox" name="ACC_Input" value="ACC"> ACC </input>
+		<input type="checkbox" name="INT_Input" value="INT"> INT </input>
+		<div id="form1">
+			<select  Id="id_stress">
+				<option value="ALL">ALL</option>
+				<option value="BE_VIE">BE VIE</option>
+				<option value="BE_VIE_ACT">BE VIE ACT</option>
+				<option value="BE_VIE_ACT_1000SIM">BE VIE ACT 1000SIM</option>
+				<option value="BE_VIE_ACT_NOVA">BE VIE ACT NOVA</option>
+				<option value="BE_VIE_ACT_NOVA_1000SIM">BE VIE ACT NOVA 1000SIM</option>
+				<option value="BE_VIE_BLANK_RUN">BE VIE BLANK RUN</option>
+				<option value="BE_VIE_CBG">BE VIE CBG</option>
+				<option value="BE_VIE_CBG_1000SIM">BE VIE CBG 1000SIM</option>
+				<option value="BE_VIE_CBG_NOVA">BE VIE CBG NOVA</option>
+				<option value="BE_VIE_CBG_NOVA_1000SIM">BE VIE CBG NOVA 1000SIM</option>
+				<option value="BE_VIE_NOVA">BE VIE NOVA</option>
+				<option value="CALC_EPIFP_CBG">CALC EPIFP CBG</option>
+				<option value="CALC_EPIFP_PSGL">CALC EPIFP PSGL</option>
+				<option value="LAT_BEGAAP">LAT BEGAAP</option>
+				<option value="LAT_IFRS">LAT IFRS</option>
+				<option value="RENTES_DC">RENTES DC</option>
+				<option value="SCR_INT_ACT">SCR INT ACT</option>
+			</select>
+			<div id="bouton">
+				<button class="bouton" type="button" onclick="SVN_Clean()">
+					Clean SVN
+				</button>
+				<button class="bouton" type="button" onclick="SVN_Commit()">
+					Commit
+				</button>
+				<button class="bouton" type="button" onclick="SVN_Update()">
+					Update selected
+				</button>
+			</div>
+			<p id="warning">
+				*Warning: By selecting ALL, you also delete the </br>tags folders --> be careful when commiting
+			</p>
+		</div>
+	</div>
+	<script language="JavaScript" type="text/javascript">
+		WshShell = new ActiveXObject("WScript.Shell");
+		
+		function SVN_Clean() {
+			<!-- WshShell.ConnectServer("153.89.39.187", "root\cimv2", "Adminstall", "@dm1nst@ll"); -->
+			<!-- Wscript.Echo "Executing" & "D:\groups\ACC\BATCH\94.Sandbox\SignOff\test.bat"; -->
+			<!-- WshShell.CurrentDirectory = "D:\groups\ACC\BATCH\94.Sandbox\SignOff\"; -->
+			var repo1 = document.getElementById("id_stress").value;
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else {
+			
+			WshShell.Run("Clean.bat " + repo1 + " " + envirProd + " " + envirAcc + " " + envirInt);			
+			
+			}
+			<!-- WshShell.Run("Clean.bat " + repo1 + " " + env); -->
+		}
+
+		function SVN_Commit() {
+			<!-- WshShell.CurrentDirectory = "D:\\projet"; -->
+			<!-- WshShell.Run("test.bat"); -->
+
+			<!-- var env = document.getElementById("envie").value; -->
+			<!-- WshShell.Run("TortoiseCommit " + repo2 + " " + env); -->
+			var repo2 = document.getElementById("id_stress").value;
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else {
+			
+			if (envirProd == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "PROD" + " " + "0" ); };
+			if (envirAcc == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "ACC" + " " + "0" ); };
+			if (envirInt == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "INT" + " " + "0" ); };		
+			
+			}			
+			<!-- WshShell.Run("TortoiseCommit " + " " + repo2 + " " + envirProd + " " + envirAcc + " " + envirInt); -->
+		}
+		
+		function SVN_Update() {
+		
+			var repo2 = document.getElementById("id_stress").value;		
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			
+
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else {
+			
+			if (envirProd == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "PROD" + " " + "1" ); };
+			if (envirAcc == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "ACC" + " " + "1" ); };
+			if (envirInt == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "INT" + " " + "1" ); };		
+			
+			}		
+		}
+	</script>
+</body>
+</html> 
