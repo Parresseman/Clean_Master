@@ -2,4 +2,4 @@
 Automatic cleaner of XML configuration
 --------------------------------------
 
-Write in bat, JavaScript, html, Css
+Written in .bat, JavaScript, html, Css
