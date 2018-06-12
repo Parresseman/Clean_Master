@@ -4,7 +4,7 @@ set repo=%1
 set env1=%2
 set env2=%3
 set env3=%4
-echo clean master version 0.9.6
+echo clean master version 1.1
 pause
 if %repo% == ALL call :all
 if %env1% == true call :Prod1
