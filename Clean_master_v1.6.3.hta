@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clean master v1.6.3</title>
+	<hta:application id="oMyApp" applicationname="Clean_master" border="thin" INNERBORDER="No" MAXIMIZEBUTTON="No" caption="yes" showintaskbar="yes" singleinstance="yes" SYSMENU="yes" ICON="notepad.exe">
+	<!-- <HTA:APPLICATION MAXIMIZEBUTTON="No"> -->
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<!-- <meta http-equiv="MSThemeCompatible" content="Yes" /> -->
+	<style>
+	html,body {
+		font-family:calibri;
+		color: #FF5A10;
+		margin: 0px; 
+	}
+	
+	select{
+
+		height: 20px;
+		border-radius: 2px;
+		border: 1px solid #ededed;
+
+	}
+	
+	h1,h2 {
+	
+		font-size: 24px;
+	
+	}
+	
+	.logo{
+		height: 66px;
+		width: 125px;
+		background-size: 125px 66px;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAADbCAMAAABQvHpgAAAC8VBMVEXfRBnfRRrfRRvfRhzgRx3gSB7gSR/gSiDgSyHgSyLgTCPhTSThTiXhTibhTyfhUCfhUCjhUSnhUiriUyviUyziVC3iVS7iVi/iVjDiVzDiWDHjWTLjWTPjWjTjWzXjWzbjXDfjXTjjXjnkXjnkXzrkYDvkYTzkYT3kYj7kYz/kZEDlZEHlZULlZkLlZkPlZ0TlaEXlaUblaUfmakjma0nmbErmbEvmbUzmbkzmb03mb07ncE/ncVDncVHnclLnc1PndFTndFXndVXodlbod1fod1joeFnoeVroelvoelzoe13pfF7pfV/pfmDpf2Hpf2LpgGPpgWTqgmXqgmbqg2fqhGfqhWjqhWnqhmrqh2vrh2zriG3riW7rim/rinDri3DrjHHrjXLsjXPsjnTsj3XskHbskHfskXjsknnsknrtk3rtlHvtlXztlX3tln7tl3/tmIDtmIHumYLumoPum4Pum4TunIXunYbunYfunojvn4nvoIrvoIvvoYzvoozvo43vo47vpI/wpZDwppHwp5PwqJTwqJXwqZXwqpbxq5fxq5jxrJnxrZrxrpvxrpzxr53xsJ7ysZ7ysZ/ysqDys6Hys6LytKPytaTytqXztqbzt6fzuKjzuajzuanzuqrzu6vzvKz0vK30va70vq/0vrD0v7H0wLH0wbL0wbP1wrT1w7X1xLb1xLf1xbj1xrn1x7r2yLv2ybz2yb32yr72y7/2zMD2zMH2zcL3zsP3z8P3z8T30MX30cb30sf30sj308n41Mr41Mv41cz41sz4183418742M/42dD52tH52tL529P53NT53dX53db53tb539f639j64Nn64dr64tv64tz649365N765d/75d/75uD75+H76OL76OP76eT76uX76ub86+f87Oj87ej87en87ur87+v88Oz88O398e798u/98/D98/H99PH99fL99fP99vT+9/X++Pb++Pf++fj++vn++/r+/Pv//fz//v3//v7////5av9qAAAQjUlEQVR4Ae3dd3QU5f7H8e9sdpOQkECkJKGAJaFI6CAFBIRcUOACV0CQwkWuF4siYhFBURAEVKSLCghXCigqRcrPcqWjCEgRBEwggEgIISUh2TKfv367yczOzJbNZOXM7u/8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);
+	}	
+	
+	.header {
+		width : 100%;
+		height: 66px;
+		background-color: #FF5A10;
+		margin-bottom: 10px;
+	}
+	
+	
+	.bouton  {
+	
+		color: #000000;
+		background-color: #f0f0f0;	
+		padding: 10px 10px;
+		border-radius: 2px;
+		border-style: none;
+
+	}
+
+	.bouton:hover {
+
+		color: #FFFFFF;
+		background-color: #FF5A10;
+
+	}
+	
+	#Title{
+		color: #FFFFFF;
+		font-weight:bold;
+		font-size:20px;
+		line-height:1.4;
+		text-align: center;
+		padding-top: 18px;
+		padding-right: 30%;
+		float: right;
+	}
+	
+	#form {
+	
+		margin-left: 20px;
+	
+	}
+	
+	#form1, #form2, #form3 {
+	
+	margin-top: 20px;
+	
+	}
+	
+	#Eclipse {
+	
+	margin-left: 100px;
+	
+	}
+	
+	#option {
+	
+	margin-top: 10px;
+	
+	}
+	
+	#bouton, #bouton_migrate, #bouton_Deploy {
+	
+	margin-top: 20px;
+	
+	}
+	
+	#warning {
+	
+	color: red;
+	
+	}
+	
+	#Migrate {
+	
+	margin-top: 50px;
+	
+	}
+	
+	#Deploy {
+	
+	margin-top: 50px;
+	
+	}
+	
+	.tx_to {
+	
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 50px;
+	margin-right: 50px;
+	
+	}
+	
+	#myProgress {
+		border-radius: 3px;
+		margin-top: 10px;
+		width: 92%;
+		background-color: #f9f9f9;
+		margin-left: 20px;
+	}
+	#myBar {
+		border-radius: 3px;
+		width: 0%;
+		height: 30px;
+		background-color: #FF5A10;
+		text-align: center;
+		color: white;
+		line-height: 30px;
+		white-space: nowrap;
+	}
+	</style>
+</head>
+<body  onload="window.resizeTo(540,730)">
+	<div class="header">
+		<img class="logo" src="" alt="" />
+		<span id="Title">Clean Master</span>
+	</div>
+	<div id="form">
+		<div id="Clean">
+			<h1>
+				Choose a calculation to clean:
+			</h1>
+			<label><input type="checkbox" name="PROD_Input" value="PROD"> PROD </label>
+			<label><input type="checkbox" name="ACC_Input" value="ACC"> ACC </label>
+			<label><input type="checkbox" name="INT_Input" value="INT"> INT </label>
+			<label><input type="checkbox" name="AGG_Input" value="AGG"> Ne pas supprimer les aggr&#233;gateurs </label>
+			<div id="form1">
+				<select  Id="id_stress">
+					<option value="ALL">ALL</option>
+					<option value="BE_VIE">BE VIE</option>
+					<option value="BE_VIE_ACT">BE VIE ACT</option>
+					<option value="BE_VIE_ACT_1000SIM">BE VIE ACT 1000SIM</option>
+					<option value="BE_VIE_ACT_NOVA">BE VIE ACT NOVA</option>
+					<option value="BE_VIE_ACT_NOVA_1000SIM">BE VIE ACT NOVA 1000SIM</option>
+					<option value="BE_VIE_BLANK_RUN">BE VIE BLANK RUN</option>
+					<option value="BE_VIE_CBG">BE VIE CBG</option>
+					<option value="BE_VIE_CBG_1000SIM">BE VIE CBG 1000SIM</option>
+					<option value="BE_VIE_CBG_NOVA">BE VIE CBG NOVA</option>
+					<option value="BE_VIE_CBG_NOVA_1000SIM">BE VIE CBG NOVA 1000SIM</option>
+					<option value="BE_VIE_NOVA">BE VIE NOVA</option>
+					<option value="CALC_EPIFP_CBG">CALC EPIFP CBG</option>
+					<option value="CALC_EPIFP_PSGL">CALC EPIFP PSGL</option>
+					<option value="LAT_BEGAAP">LAT BEGAAP</option>
+					<option value="LAT_IFRS">LAT IFRS</option>
+					<option value="RENTES_DC">RENTES DC</option>
+					<option value="SCR_INT_ACT">SCR INT ACT</option>
+				</select>
+			</div>
+			<!-- <div id="option">
+				<label><input type="checkbox" name="SUPPR_batch" value="batch"> Suppression des workflows </label>
+			</div> -->
+			<div id="bouton">
+				<button class="bouton" type="button" onclick="SVN_Clean()">
+					Clean SVN
+				</button>
+				<button class="bouton" type="button" onclick="SVN_Commit()">
+					Commit
+				</button>
+				<button id="Update" class="bouton" type="button" onclick="SVN_Update()">
+					Update selected
+				</button>
+				<button id="Eclipse" class="bouton" type="button" onclick="RUN_eclipse()">
+					Run eclipse
+				</button>
+			</div>
+		</div>
+		<div id="Migrate">
+			<h2>
+				Migration option:
+			</h2>
+			<label><input type="checkbox" name="PROD_From" value="PROD"> PROD </label>
+			<label><input type="checkbox" name="ACC_From" value="ACC"> ACC </label>
+			<label><input type="checkbox" name="INT_From" value="INT"> INT </label>
+			<div id="form2">
+				<select  Id="id_stress2">
+					<option value="BE_VIE">BE VIE</option>
+					<option value="BE_VIE_ACT">BE VIE ACT</option>
+					<option value="BE_VIE_ACT_1000SIM">BE VIE ACT 1000SIM</option>
+					<option value="BE_VIE_ACT_NOVA">BE VIE ACT NOVA</option>
+					<option value="BE_VIE_ACT_NOVA_1000SIM">BE VIE ACT NOVA 1000SIM</option>
+					<option value="BE_VIE_BLANK_RUN">BE VIE BLANK RUN</option>
+					<option value="BE_VIE_CBG">BE VIE CBG</option>
+					<option value="BE_VIE_CBG_1000SIM">BE VIE CBG 1000SIM</option>
+					<option value="BE_VIE_CBG_NOVA">BE VIE CBG NOVA</option>
+					<option value="BE_VIE_CBG_NOVA_1000SIM">BE VIE CBG NOVA 1000SIM</option>
+					<option value="BE_VIE_NOVA">BE VIE NOVA</option>
+					<option value="CALC_EPIFP_CBG">CALC EPIFP CBG</option>
+					<option value="CALC_EPIFP_PSGL">CALC EPIFP PSGL</option>
+					<option value="LAT_BEGAAP">LAT BEGAAP</option>
+					<option value="LAT_IFRS">LAT IFRS</option>
+					<option value="RENTES_DC">RENTES DC</option>
+					<option value="SCR_INT_ACT">SCR INT ACT</option>
+				</select>
+				<span class="tx_to" >To: </span>
+				<label><input type="checkbox" name="PROD_To" value="PROD"> PROD </label>
+				<label><input type="checkbox" name="ACC_To" value="ACC"> ACC </label>
+				<label><input type="checkbox" name="INT_To" value="INT"> INT </label>
+			</div>
+			<div id="bouton_migrate">
+				<button class="bouton" type="button" onclick="SVN_Migration()">
+					Migrate
+				</button>
+				<button class="bouton" type="button" onclick="SVN_Revert()">
+					Undo change
+				</button>
+			</div>
+		</div>
+		<div id="Deploy">
+			<h2>
+				Deployement option:
+			</h2>
+			<div id="form3">
+				<label><input type="checkbox" name="PROD_FromD" value="PROD"> PROD </label>
+				<label><input type="checkbox" name="ACC_FromD" value="ACC"> ACC </label>
+				<label><input type="checkbox" name="INT_FromD" value="INT"> INT </label>
+				<span class="tx_to" >To: </span>
+				<label><input type="checkbox" name="PROD_ToD" value="PROD"> PROD </label>
+				<label><input type="checkbox" name="ACC_ToD" value="ACC"> ACC </label>
+				<label><input type="checkbox" name="INT_ToD" value="INT"> INT </label>
+			</div>
+			<div id="bouton_Deploy">
+				<button class="bouton" type="button" onclick="SVN_Deploy()">
+					Deploy
+				</button>
+				<button class="bouton" type="button" onclick="SVN_Revert('ALL')">
+					Undo change
+				</button>
+			</div>
+		</div>
+	</div>
+	<div id="myProgress">
+		<div id="myBar">
+		</div>
+	</div>
+	<script language="JavaScript" type="text/javascript">
+		WshShell = new ActiveXObject("WScript.Shell");
+		FsObj = new ActiveXObject("Scripting.FileSystemObject");
+		
+		function RUN_eclipse() {
+		
+		//if (FsObj.FolderExists("C:\\Users\\p11950\\Downloads\\jbpm\\")) {alert("ça marche !")};
+		
+		WshShell.Run("C:\\Users\\p11950\\Downloads\\jbpm\\run-eclipse.bat ");
+		
+		}
+		
+		function SVN_Revert(So) {
+			var StressR = document.getElementById("id_stress2").value;
+			var PrFr = PROD_From.checked;
+			var PrTo = PROD_To.checked;
+			var AcFr = ACC_From.checked;
+			var AcTo = ACC_To.checked;
+			var InFr = INT_From.checked;
+			var InTo = INT_To.checked;
+			var PrFrD = PROD_FromD.checked;
+			var PrToD = PROD_ToD.checked;
+			var AcFrD = ACC_FromD.checked;
+			var AcToD = ACC_ToD.checked;
+			var InFrD = INT_FromD.checked;
+			var InToD = INT_ToD.checked;
+			
+			if (So == "ALL") {
+			
+				if (PrToD == true){WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "ALL" + " " + "0" + " " + "1" + " " + "0" + " " + "1" );};
+				if (AcToD == true){WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "ALL" + " " + "0" + " " + "1" + " " + "0" + " " + "2" );};
+				if (InToD == true){WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "ALL" + " " + "0" + " " + "1" + " " + "0" + " " + "3" );};
+			
+			} else {
+				if (AcTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "ACC" + " " + "0" + " " + "1" + " " + "0" + " " + "0" ); };
+				if (PrTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "PROD" + " " + "0" + " " + "1" + " " + "0" + " " + "0" ); };
+				if (InTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressR + " " + "INT" + " " + "0" + " " + "1" + " " + "0" + " " +"0" ); };	
+			}
+		}
+		
+		function SVN_Migration() {
+			var StressF = document.getElementById("id_stress2").value;
+			// var FolderCheck = if (AcTo == true && InFr == true) {FsObj.CopyFolder(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); };
+			var PrFr = PROD_From.checked;
+			var PrTo = PROD_To.checked;
+			var AcFr = ACC_From.checked;
+			var AcTo = ACC_To.checked;
+			var InFr = INT_From.checked;
+			var InTo = INT_To.checked;
+
+			
+			if (confirm("As tu fait un update avant ?")) {
+			
+				if (PrFr == false && PrTo == false && AcFr == false && AcTo == false && InFr == false && InTo == false) {
+				
+				alert("Choissisez un environnement !")
+				
+				} else if (PrFr == false && AcFr == false && InFr == false){
+				
+				alert("Choissisez un environnement source !")
+				
+				} else if (PrTo == false && AcTo == false && InTo == false){
+				
+				alert("Choissisez un environnement cible !")
+				
+				} else if (FsObj.FolderExists(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\") == false && FsObj.FolderExists(".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\") == false && FsObj.FolderExists(".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\") == false){
+				
+				alert("Le chemin n'existe pas !")
+				
+				} else {
+				
+				var id = setInterval(frame, 10);
+				var elem = document.getElementById("myBar");
+				var width = 10;
+				var val = [			
+					function() { if (AcTo == true && InFr == true) {
+						FsObj.CopyFolder(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+					function() { if (PrTo == true && InFr == true) {
+						FsObj.CopyFolder(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+					function() { if (InTo == true && AcFr == true) {
+						FsObj.CopyFolder(".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+					function() { if (PrTo == true && AcFr == true) {
+						FsObj.CopyFolder(".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+					function() { if (InTo == true && PrFr == true) {
+						FsObj.CopyFolder(".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+					function() { if (AcTo == true && PrFr == true) {
+						FsObj.CopyFolder(".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); 
+						FsObj.CopyFile(".\\PROD\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\");
+						}; },
+				];
+				var i = 0;
+				if (AcTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressF + " " + "ACC" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };
+				if (PrTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressF + " " + "PROD" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };
+				if (InTo == true) {WshShell.Run("TortoiseCommit.bat " + " " + StressF + " " + "INT" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };	
+				function frame() {
+					if (width >= 100) {
+						width = 100;
+						elem.style.width = width + '%';
+						elem.innerHTML = width * 1 + '%';				
+						clearInterval(id);
+					} else if (i < 6) {
+						val[i]();
+						width = width + 10;
+						elem.style.width = width + '%';
+						elem.innerHTML = width * 1 + '%';
+						i++;				
+					
+					} else {
+						width = 100;
+						elem.style.width = width + '%';
+						elem.innerHTML = width * 1 + '%';					
+					
+					}	
+				}
+				}
+			
+			} else {
+			
+			//var update = document.getElementById("Update");
+			
+			//update.style.cssText = "color:white;background-color:red;";
+			//update.style.backgroundColor = "red";
+						
+			} 
+		}
+		
+		function SVN_Deploy() {
+			// var StressFD = document.getElementById("id_stress3").value;
+			// var FolderCheck = if (AcTo == true && InFr == true) {FsObj.CopyFolder(".\\INT\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + StressF + "\\branches\\groupe1\\RUN1\\"); };
+			var PrFrD = PROD_FromD.checked;
+			var PrToD = PROD_ToD.checked;
+			var AcFrD = ACC_FromD.checked;
+			var AcToD = ACC_ToD.checked;
+			var InFrD = INT_FromD.checked;
+			var InToD = INT_ToD.checked;
+			
+			if (confirm("As tu fait un update avant ?")) {
+			
+				if (PrFrD == false && PrToD == false && AcFrD == false && AcToD == false && InFrD == false && InToD == false) {
+				
+				alert("Choissisez un environnement !")
+				
+				} else if (PrFrD == false && AcFrD == false && InFrD == false){
+				
+				alert("Choissisez un environnement source !")
+				
+				} else if (PrToD == false && AcToD == false && InToD == false){
+				
+				alert("Choissisez un environnement cible !")
+				
+				} else if (FsObj.FolderExists(".\\INT\\SolvencyII\\") == false || FsObj.FolderExists(".\\ACC\\SolvencyII\\") == false || FsObj.FolderExists(".\\PROD\\SolvencyII\\") == false){
+				
+				alert("Le chemin n'existe pas !")
+				
+				} else {
+					//Déclaration variables
+					var id = setInterval(frame, 10);
+					var elem = document.getElementById("myBar");
+					var width = 10;
+					var Stress = ["BE_VIE","BE_VIE_ACT","BE_VIE_ACT_1000SIM","BE_VIE_ACT_NOVA","BE_VIE_ACT_NOVA_1000SIM","BE_VIE_BLANK_RUN","BE_VIE_CBG","BE_VIE_CBG_1000SIM","BE_VIE_CBG_NOVA","BE_VIE_CBG_NOVA_1000SIM","BE_VIE_NOVA","CALC_EPIFP_CBG","CALC_EPIFP_PSGL","LAT_BEGAAP","LAT_IFRS","RENTES_DC","SCR_INT_ACT"];
+					//var i = 0;
+					var s = 0;
+					//Logs
+					if (AcToD == true) {WshShell.Run("TortoiseCommit.bat " + " " + "ALL" + " " + "ACC" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };
+					if (PrToD == true) {WshShell.Run("TortoiseCommit.bat " + " " + "ALL" + " " + "PROD" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };
+					if (InToD == true) {WshShell.Run("TortoiseCommit.bat " + " " + "ALL" + " " + "INT" + " " + "0" + " " + "0" + " " + "1" + " " + "0" ); };
+					//Instance fonction de copie
+					function CopyS(stre) {
+						if (AcToD == true && InFrD == true) {
+							FsObj.CopyFolder(".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+						if (PrToD == true && InFrD == true) {
+							FsObj.CopyFolder(".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+						if (InToD == true && AcFrD == true) {
+							FsObj.CopyFolder(".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+						if (PrToD == true && AcFrD == true) {
+							FsObj.CopyFolder(".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+						if (InToD == true && PrFrD == true) {
+							FsObj.CopyFolder(".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\INT\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+						if (AcToD == true && PrFrD == true) {
+							FsObj.CopyFolder(".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\*", ".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							FsObj.CopyFile(".\\PROD\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\repo.PROPERTIES", ".\\ACC\\SolvencyII\\" + stre + "\\branches\\groupe1\\RUN1\\");
+							};
+					}
+					//Instance et boucle de la fonction d'éxécution princiaple
+					function frame() {
+						if (width >= 100) {
+							width = 100;
+							elem.style.width = width + '%';
+							elem.innerHTML = width * 1 + '%';				
+							clearInterval(id);
+						} else if (s < 17) {
+							CopyS(Stress[s]);
+							width = width + 10;
+							elem.style.width = width + '%';
+							elem.innerHTML = width * 1 + '%';
+							//i++;
+							s++;
+						
+						} else {
+							width = 100;
+							elem.style.width = width + '%';
+							elem.innerHTML = width * 1 + '%';					
+						
+						}	
+					}
+				}
+			} else {
+			
+			//var update = document.getElementById("Update");
+			
+			//update.style.cssText = "color:white;background-color:red;";
+			//update.style.backgroundColor = "red";
+						
+			}
+			if (PrToD == true) {WshShell.Run("Clean.bat " + "Depl" + " " + "1" + " " + "0" + " " + "0" + " " + "0"); };
+			if (AcToD == true) {WshShell.Run("Clean.bat " + "Depl" + " " + "0" + " " + "1" + " " + "0" + " " + "0"); };
+			if (InToD == true) {WshShell.Run("Clean.bat " + "Depl" + " " + "0" + " " + "0" + " " + "1" + " " + "0"); };
+		}
+		
+		function SVN_Clean() {
+			<!-- WshShell.ConnectServer("153.89.39.187", "root\cimv2", "Adminstall", "@dm1nst@ll"); -->
+			<!-- Wscript.Echo "Executing" & "D:\groups\ACC\BATCH\94.Sandbox\SignOff\test.bat"; -->
+			<!-- WshShell.CurrentDirectory = "D:\groups\ACC\BATCH\94.Sandbox\SignOff\"; -->
+			var repo1 = document.getElementById("id_stress").value;
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else if (AGG_Input.checked == true){
+			
+			WshShell.Run("Clean.bat " + repo1 + " " + envirProd + " " + envirAcc + " " + envirInt + " " + "1");			
+			
+			} else {
+			
+			WshShell.Run("Clean.bat " + repo1 + " " + envirProd + " " + envirAcc + " " + envirInt + " " + "0");
+			
+			}
+			<!-- WshShell.Run("Clean.bat " + repo1 + " " + env); -->
+		}
+
+		function SVN_Commit() {
+			<!-- WshShell.CurrentDirectory = "D:\\projet"; -->
+			<!-- WshShell.Run("test.bat"); -->
+
+			<!-- var env = document.getElementById("envie").value; -->
+			<!-- WshShell.Run("TortoiseCommit " + repo2 + " " + env); -->
+			var repo2 = document.getElementById("id_stress").value;
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else {
+			
+			if (envirProd == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "PROD" + " " + "0" + " " + "0" + " " + "0" + " " + "0" ); };
+			if (envirAcc == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "ACC" + " " + "0" + " " + "0" + " " + "0" + " " + "0" ); };
+			if (envirInt == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "INT" + " " + "0" + " " + "0" + " " + "0" + " " + "0" ); };
+			
+			}			
+			<!-- WshShell.Run("TortoiseCommit " + " " + repo2 + " " + envirProd + " " + envirAcc + " " + envirInt); -->
+		}
+		
+		function SVN_Update() {
+		
+			var repo2 = document.getElementById("id_stress").value;		
+			var envirProd = PROD_Input.checked;
+			var envirAcc = ACC_Input.checked;
+			var envirInt = INT_Input.checked;
+			//var update = document.getElementById("Update");
+			//var css = document.createTextNode("#Update:hover { background-color: #FF5A10; }");
+			//var styleCH = document.createElement("style");
+			
+			//styleCH.appendChild(css);
+			//document.style.appendChild(css);
+			//update.style.color = "#000000";
+			//update.style.backgroundColor = "#f0f0f0";
+			
+			if (envirProd == false && envirAcc == false && envirInt == false){
+			
+			alert("choissisez un environnement !")
+			
+			} else {
+			
+			if (envirProd == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "PROD" + " " + "1" + " " + "0" + " " + "0" + " " + "0" ); };
+			if (envirAcc == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "ACC" + " " + "1" + " " + "0" + " " + "0" + " " + "0" ); };
+			if (envirInt == true) { WshShell.Run("TortoiseCommit.bat " + " " + repo2 + " " + "INT" + " " + "1" + " " + "0" + " " + "0" + " " + "0" ); };		
+			
+			}
+		}
+	</script>
+</body>
+</html> 

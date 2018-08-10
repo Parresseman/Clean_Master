@@ -34,7 +34,7 @@ exit
 :log
 if not exist "./Clean_master_log/" mkdir .\Clean_master_log
 >./Clean_master_log/Clean_master_Migration_%TIME:~3,2%%TIME:~6,2%_%DATE:~-10,2%%DATE:~-7,2%%DATE:~-4,4%_log.txt (
-echo clean master version 1.6 - Migration
+echo clean master version 1.6.3 - Migration
 echo ------------------------------------
 echo execution: %USERNAME% [%DATE% - %TIME%]
 echo.
